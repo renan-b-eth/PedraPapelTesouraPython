@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import messagebox
+import tkinter as tk
 
 root = Tk();
 root.geometry("500x500")
@@ -15,21 +17,32 @@ d_contagem1 = StringVar()
 d_contagem2 = StringVar()
 d_empate = StringVar()
 
+
 #Criação das Label de contagem
 
-lbl_contagemJogador1 = Label(root,text="0", background="green", width=10, height=5, textvariable=d_contagem1).place(x=30,y=20)
-lbl_contagemJogador2 = Label(root,text="0", background="green", width=10, height=5, textvariable=d_contagem2).place(x=280,y=20)
-lbl_empate = Label(root,text="0", background="red", width=10, height=5, textvariable=d_empate).place(x=150,y=20)
+lbl_contagemJogador1 = tk.Label(root,text="0", background="green", width=10, height=5, textvariable=d_contagem1)
+lbl_contagemJogador1.place(x=30,y=20)
+
+lbl_contagemJogador2 = Label(root,text="0", background="green", width=10, height=5, textvariable=d_contagem2)
+lbl_contagemJogador2.place(x=280,y=20)
+
+lbl_empate = Label(root,text="0", background="red", width=10, height=5, textvariable=d_empate)
+lbl_empate.place(x=150,y=20)
 
 #verifica os valores
 def verificarValores():
     if(sb_valores.get() == "pedra" and sb_valores2.get() == "pedra"):
         d_empate.set(empate+1)
-        botao()
+        empate2 = empate + 1
+        print(empate2)
+        lbl_contagemJogador1.configure(text=d_empate)
+        messagebox.showinfo("Jogo velha", "Empate")
     elif(sb_valores.get() == "papel" and sb_valores2.get() == "papel"):
         d_empate.set(empate+1)
+        messagebox.showinfo("Jogo velha", "Empate")
     elif(sb_valores.get() == "tesoura" and sb_valores2.get() == "tesoura"):
         d_empate.set(empate+1)
+        messagebox.showinfo("Jogo velha", "Empate")
         return "SEM VALORES"
 
 #criacao do spinbox
@@ -46,11 +59,6 @@ btn_jogar = Button(root,text="Jogar",command=verificarValores)
 btn_jogar.pack()
 btn_jogar.place(x=50, y=250)
 
-def botao():
-    btn_jogar = Button(root,text="Jogar",command=verificarValores)
-    return "oi"
-
-
 
 #Criacao da Entrada De Valores Para Comparação
 #txt_Jogador1 = Entry(root, text="Jogador 1:", background="#dde", foreground="#009", width=30).place(x=50,y=200)
@@ -58,8 +66,6 @@ def botao():
 
 
 root.mainloop()
-
-
 
 def main():
     botao()
